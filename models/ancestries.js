@@ -40,6 +40,9 @@ Ancestry.init(
     languages: {
       type: DataTypes.ARRAY(DataTypes.STRING),
     },
+    optional_langes: {
+      type: DAtaTypes.ARRAY(DataTypes.STRING)
+    },
     traits: {
       type: DataTypes.ARRAY(DataTypes.STRING),
     },
@@ -47,12 +50,9 @@ Ancestry.init(
   {
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "ancestries", // We need to choose the model name
+    modelName: "ancestry", // We need to choose the model name
   }
 );
-
-Ancestry.hasMany(Heritage)
-Ancestry.hasMany(Feat)
 
 export class Heritage extends Model {}
 
@@ -62,6 +62,9 @@ Heritage.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+    },
+    name: {
+      type: Datatypes.STRING,
     },
     ancestry_id: {
       type: DataTypes.INTEGER,
@@ -73,6 +76,11 @@ Heritage.init(
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       allowNull: true
     }
+  },
+  {
+    // Other model options go here
+    sequelize, // We need to pass the connection instance
+    modelName: "heritage", // We need to choose the model name
   }
 )
 
@@ -99,7 +107,12 @@ HeritageAction.init(
     desc: {
       type: DataTypes.STRING,
     }
+  },
+  {
+    // Other model options go here
+    sequelize, // We need to pass the connection instance
+    modelName: "heritage_action", // We need to choose the model name
   }
 )
 
-export default Ancestries;
+export default Ancestry;
